@@ -1,3 +1,36 @@
-div{
-  color:blue;
+.nav-bar{
+  border:1px solid black;
+  height:5vh;
+}
+.nav-link{
+  color:#151515;
+  text-decoration:none;
+}
+.nav-link:hover{
+  color:##0047b3;
+  text-decoration:underline;
+}
+.hero{
+  border:1px solid black;
+  background-color:#aaa;
+  height:94.99vh;
+}
+.hero-image{
+  padding-top:42vh;
+  padding-left:45vw;
+}
+.content{
+  border:1px solid black;
+  height:35vh;
+}
+.content-image{
+  border:1px solid black;
+  background-color:#aaa;
+  height:25vh;
+}
+.footer{
+  height:5vh;
+}
+.test{
+  color:red;
 }
