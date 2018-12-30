@@ -1,49 +1,75 @@
-//setting up constants
-const container=document.querySelector(`.container-fluid`);
+//setting up variables
+const container=document.querySelector(`.store`);
 const footer=document.querySelector(`.footer`);
+//input variables - only applicable to editor
+const nameInput=document.querySelector(`#name`);
+const enter=document.querySelector(`button`);
+const descInput=document.querySelector(`#desc`);
+const thumbInput=document.querySelector(`#thumb`);
 
-//example items, will eventually be pulled from elsewhere
-var item1={
-  name:"matt",
-  description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  image:"../images/horse-placeholder.png"
-};
-var item2={
-  name:"horse 2",
-  description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  image:"../images/horse-placeholder.png"
-};
-//populating an array with the items
-var itemArray=[item1, item2];
+var itemArray=[];
+var savedArray=undefined;
 
-function createElements(){
+function editor(){
+  //editor form event listeners
+  enter.addEventListener(`click`, function(event){
+    //when enter button is clicked
+    itemArray.push({
+      //push these things to an array in the form of one object
+      name:nameInput.value,
+      desc:descInput.value,
+      image:thumbInput.value.split("\\")[thumbInput.value.split("\\").length-1]
+    });
+    //reset values of inputs
+    nameInput.value="";
+    descInput.value="";
+    thumbInput.value="";
+
+    createStore(itemArray);
+  })
+  save.addEventListener(`click`, function(event){
+    saveStore(itemArray);
+  })
+}
+editor();
+//turning the itemArray[] array into HTML
+function createStore(array){
+  container.innerHTML="";
+
   //adding content to the list items based off given attributes
-  for(let i=0;i<itemArray.length;i++){
+  for(let i=0;i<array.length;i++){
     //creating the container element
-    itemArray[i].element=document.createElement(`div`);
-    itemArray[i].element.classList.add(`row`, `store-item`);
-    if(i+1==itemArray.length){
+    array[i].element=document.createElement(`div`);
+    array[i].element.classList.add(`row`, `store-item`);
+    if(i+1==array.length){
       //if the element is the last in the list, it gets this class
-      itemArray[i].element.classList.add(`last`);
+      array[i].element.classList.add(`last`);
     }
     //populating the parent .store-item element
-    itemArray[i].element.innerHTML=`
+    array[i].element.innerHTML=`
     <div class="col-md-4">
       <!-- the thumbnail image -->
-      <img class="item-thumbnail img-fluid" src="${itemArray[i].image}">
+      <img class="item-thumbnail img-fluid" src="../images/${array[i].image}">
     </div>
     <div class="col-md-8 store-text-contianer">
       <!-- the name of the item -->
       <h3>
-        <a class="store-link" href="store-items/${itemArray[i].name}.html">${itemArray[i].name}</a>
+        <a class="store-link" href="store-items/${array[i].name}.html">${array[i].name}</a>
       </h3>
       <!-- the item description -->
-      <p>${itemArray[i].description}</p>
+      <p>${array[i].description}</p>
     </div>`;
-
-    container.insertBefore(itemArray[i].element, footer);
+    container.appendChild(array[i].element);
   }
-
+  return JSON.stringify(array);
 }
 
-export {createElements};
+//turning the itemArray into JSON
+function saveStore(array){
+  if(itemArray[0]!=undefined){
+    savedArray=JSON.stringify(itemArray);
+  }
+  console.log(!savedArray);
+}
+
+export {createStore};

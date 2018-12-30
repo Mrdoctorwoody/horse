@@ -1,3 +1,1 @@
-import {createElements} from "/js/createItems.js";
-
-createElements();
+import {createStore} from "/js/createItems.js";
