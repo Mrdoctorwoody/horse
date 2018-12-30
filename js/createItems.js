@@ -57,7 +57,7 @@ function createStore(array){
         <a class="store-link" href="store-items/${array[i].name}.html">${array[i].name}</a>
       </h3>
       <!-- the item description -->
-      <p>${array[i].description}</p>
+      <p>${array[i].desc}</p>
     </div>`;
     container.appendChild(array[i].element);
   }
@@ -69,7 +69,6 @@ function saveStore(array){
   if(itemArray[0]!=undefined){
     savedArray=JSON.stringify(itemArray);
   }
-  console.log(!savedArray);
 }
 
-export {createStore};
+export {createStore, savedArray};
