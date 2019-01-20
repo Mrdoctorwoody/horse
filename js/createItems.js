@@ -16,11 +16,14 @@ function createStore(array){
       //if the element is the last in the list, it gets this class
       array[i].element.classList.add(`last`);
     }
+    if(i%2==0){
+      array[i].element.classList.add(`odd`);
+    }
     //populating the parent .store-item element
     array[i].element.innerHTML=`
     <div class="col-md-4">
       <!-- the thumbnail image -->
-      <img class="item-thumbnail img-fluid" src="../images/${array[i].image}">
+      <img class="item-thumbnail " src="../images/${array[i].image}">
     </div>
     <div class="col-md-8 store-text-container">
       <!-- the name of the item -->
