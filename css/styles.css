@@ -1,8 +1,17 @@
 /*universal styles*/
-.nav-bar{
+div.nav-bar{
   border-bottom:1px solid #66cc77;
   height:5vh;
   background-color:#7bd389;
+  padding:0px;
+}
+div.col-md-1.nav-logo-container{
+  padding-left:15px;
+}
+.nav-logo{
+  height:4.9vh;
+  width:auto;
+  margin-right:15px;
 }
 .nav-link{
   color:#151515;
@@ -13,9 +22,11 @@
   text-decoration:underline;
 }
 .hero{
-  border:1px solid black;
   background-color:#aaa;
   height:90vh;
+  background-image:url("../images/mint 3.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
 }
 .hero-button{
   margin-top:42vh;
@@ -69,7 +80,7 @@ div.odd{
   height:90vh;
 }
 .item-page-image{
-  width:40vw;
+  height:45vh;
   margin-top:4vh;
   margin-left:30vw;
   margin-bottom:2vh;
